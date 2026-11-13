@@ -102,36 +102,48 @@ Everything is free. No paid API, no fine-tuning, no datasets.
 ## Project structure
 
 ```text
-.
-├── app_v1.py                 # Gradio app, Version 1
-├── app_v2.py                 # Gradio app, Version 2
-├── run.py                    # python run.py v1 | v2
+.AI-Escape-Room/
+├── app_v1.py              # Gradio app for Version 1 (prompt-only game)
+├── app_v2.py              # Gradio app for Version 2 (engine + LLM)
+├── run.py                 # launcher: python run.py v1 | v2
+├── requirements.txt       # gradio, google-genai, python-dotenv, pytest
+├── .env.example           # template for your Gemini API key
+├── .gitignore             # keeps .env out of GitHub
+├── LICENSE
+├── README.md
+│
 ├── config/
-│   └── game_v2.json          # objects, items, codes, descriptions
+│   └── game_v2.json       # room objects, items and codes for V2
+│
 ├── escape_room/
-│   ├── llm.py                # Gemini wrapper (retries + fallback models)
-│   ├── v1_game.py            # Version 1: one prompt + full history
+│   ├── llm.py             # Gemini wrapper (retries, fallback models, friendly errors)
+│   ├── v1_game.py         # V1: one big prompt + chat history
 │   └── v2/
-│       ├── config.py         # loads the JSON, matches "shelf" -> "bookshelf"
-│       ├── state.py          # the game state dictionary
-│       ├── engine.py         # the rules: inventory, puzzle order, codes, winning
-│       ├── parser.py         # text -> action (Gemini JSON or regex)
-│       ├── narrator.py       # facts -> nice text, plus the code-leak check
-│       └── game.py           # one turn: parse -> apply -> narrate
+│       ├── config.py      # loads the JSON config, name matching
+│       ├── state.py       # game state (inventory, solved puzzles)
+│       ├── engine.py      # rules: the only code that changes state
+│       ├── parser.py      # player text -> intent (Gemini or regex fallback)
+│       ├── narrator.py    # intent result -> story text, with leak check
+│       └── game.py        # connects parser, engine and narrator
+│
+├── tests/
+│   ├── conftest.py        # fake LLM used by the tests
+│   ├── test_engine.py
+│   ├── test_parser.py
+│   └── test_narrator_and_game.py
+│
 ├── scripts/
-│   ├── offline_demo.py       # plays the game + cheating attempts, no key needed
-│   └── v1_probe.py           # sends the cheating attempts to Version 1
-├── tests/                    # 61 tests
+│   ├── offline_demo.py    # plays V2 start to finish without an API key
+│   └── v1_probe.py        # sends test attacks to V1
+│
 ├── docs/
 │   ├── architecture_v1.md
 │   ├── architecture_v2.md
 │   ├── test_cases.md
 │   ├── demo.md
 │   └── report.md
-├── screenshots/
-├── .env.example
-├── .gitignore
-└── requirements.txt
+│
+└── screenshots/           # V1 and V2 gameplay and test screenshots
 ```
 
 ## Installation
