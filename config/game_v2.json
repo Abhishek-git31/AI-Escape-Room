@@ -1,0 +1,56 @@
+{
+  "room": "Old Library",
+  "intro": "You wake up on a dusty carpet in an old library. The air smells of paper and candle wax. There is a desk with a drawer, a tall bookshelf, a painting on the wall and a heavy door with a keypad. The door is locked. Time to look around.",
+
+  "objects": {
+    "desk": {
+      "aliases": ["desk", "table", "writing desk"],
+      "description": "An old wooden desk. Someone carved a message into it: 'The books know the way to the drawer.' The desk has a small drawer with a four-digit lock."
+    },
+    "bookshelf": {
+      "aliases": ["bookshelf", "shelf", "shelves", "bookcase"],
+      "description": "A tall bookshelf full of dusty books. Four books with red covers stick out a little, as if someone put them back in a hurry."
+    },
+    "books": {
+      "aliases": ["books", "red books", "book", "four books"],
+      "needs_examined": "bookshelf",
+      "description": "You pull out the four red books. Each one has a number written on the first page: 5, 2, 8 and 6."
+    },
+    "drawer": {
+      "aliases": ["drawer", "desk drawer", "locked drawer"],
+      "description": "A small drawer in the desk with a four-digit combination lock.",
+      "open_description": "The drawer is open."
+    },
+    "painting": {
+      "aliases": ["painting", "picture", "portrait", "frame"],
+      "description": "A painting of a lighthouse at night. When you look closely there is a tiny keyhole in the bottom corner of the frame.",
+      "open_description": "The painting has swung open like a door, showing a small hidden panel in the wall."
+    },
+    "door": {
+      "aliases": ["door", "exit", "keypad", "lock"],
+      "description": "A heavy oak door with a four-digit keypad. This is the way out."
+    },
+    "paper": {
+      "aliases": ["paper", "note", "slip", "piece of paper"],
+      "description": "A folded piece of paper. In neat handwriting it says: 7314."
+    }
+  },
+
+  "items": {
+    "key": {
+      "aliases": ["key", "brass key", "small key"],
+      "location": "drawer",
+      "description": "A small brass key."
+    },
+    "paper": {
+      "aliases": ["paper", "note", "slip", "piece of paper"],
+      "location": "panel",
+      "description": "A folded piece of paper."
+    }
+  },
+
+  "codes": {
+    "drawer": "5286",
+    "door": "7314"
+  }
+}
